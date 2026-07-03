@@ -6,6 +6,7 @@ import 'package:skybase/core/extension/context_extension.dart';
 import 'package:skybase/data/sources/local/cached_key.dart';
 import 'package:skybase/ui/views/sample_feature/list/sample_feature_list_controller.dart';
 import 'package:skybase/ui/widgets/base/pagination/pagination_list_view.dart';
+import 'package:skybase/ui/widgets/keep_alive_wrapper.dart';
 import 'package:skybase/ui/widgets/shimmer/sample_feature/shimmer_sample_feature_list.dart';
 import 'package:skybase/ui/widgets/sky_appbar.dart';
 import 'package:skybase/ui/widgets/sky_image.dart';
@@ -19,35 +20,37 @@ class SampleFeatureListView extends GetView<SampleFeatureListController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SkyAppBar.secondary(title: 'txt_list_users'.tr),
-      body: Obx(
-        () => PaginationListView(
-          state: controller.state.value,
-          scrollController: controller.scrollController,
-          loadingView: const ShimmerSampleFeatureList(),
-          onRefresh: controller.onRefresh,
-          onRetry: controller.onRefresh,
-          onLoadMore: controller.onLoadMore,
-          itemCount: controller.dataList.length,
-          allLoaded: controller.allLoaded.value,
-          itemBuilder: (BuildContext context, int index) {
-            final item = controller.dataList[index];
-            return ListTile(
-              onTap: () => controller.onChooseUser(
-                id: item.id,
-                username: item.username,
-              ),
-              leading: SkyImage(
-                shapeImage: ShapeImage.circle,
-                size: 30,
-                src: '${item.avatarUrl}&s=200',
-              ),
-              title: Text(item.username.toString()),
-              subtitle: Text(
-                item.gitUrl.toString(),
-                style: context.typography.body2,
-              ),
-            );
-          },
+      body: KeepAliveWrapper(
+        child: Obx(
+          () => PaginationListView(
+            state: controller.state.value,
+            scrollController: controller.scrollController,
+            loadingView: const ShimmerSampleFeatureList(),
+            onRefresh: controller.onRefresh,
+            onRetry: controller.onRefresh,
+            onLoadMore: controller.onLoadMore,
+            itemCount: controller.dataList.length,
+            allLoaded: controller.allLoaded.value,
+            itemBuilder: (BuildContext context, int index) {
+              final item = controller.dataList[index];
+              return ListTile(
+                onTap: () => controller.onChooseUser(
+                  id: item.id,
+                  username: item.username,
+                ),
+                leading: SkyImage(
+                  shapeImage: ShapeImage.circle,
+                  size: 30,
+                  src: '${item.avatarUrl}&s=200',
+                ),
+                title: Text(item.username.toString()),
+                subtitle: Text(
+                  item.gitUrl.toString(),
+                  style: context.typography.body2,
+                ),
+              );
+            },
+          ),
         ),
       ),
       floatingActionButton: Align(
