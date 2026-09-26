@@ -41,10 +41,12 @@ class SampleFeatureRepositoryImpl extends BaseRepository
       );
 
       // Without cache
+      // await Future.delayed(Duration(seconds: 2));
       // return await apiService.getUsers(
-      //   cancelToken: baseParams.cancelToken,
+      //   cancelToken: requestParams.cancelToken,
       //   page: page,
       //   perPage: perPage,
+      //   username: username,
       // );
     } catch (e, stack) {
       log('$tag error = $e, $stack');
@@ -85,19 +87,19 @@ class SampleFeatureRepositoryImpl extends BaseRepository
     );
 
     // return await apiService
-    //     .getDetailUser(cancelToken: baseParams.cancelToken, username: username)
+    //     .getDetailUser(cancelToken: requestParams.cancelToken, username: username)
     //     .then(
     //   (res) async {
     //     res.followersList = await apiService.getFollowers(
-    //       cancelToken: baseParams.cancelToken,
+    //       cancelToken: requestParams.cancelToken,
     //       username: username,
     //     );
     //     res.followingList = await apiService.getFollowings(
-    //       cancelToken: baseParams.cancelToken,
+    //       cancelToken: requestParams.cancelToken,
     //       username: username,
     //     );
     //     res.repositoryList = await apiService.getRepos(
-    //       cancelToken: baseParams.cancelToken,
+    //       cancelToken: requestParams.cancelToken,
     //       username: username,
     //     );
     //     return res;

@@ -1,3 +1,4 @@
+import 'package:skybase/ui/views/github_user/github_user_route.dart';
 import 'package:skybase/ui/views/intro/intro_route.dart';
 import 'package:skybase/ui/views/login/login_route.dart';
 import 'package:skybase/ui/views/profile/profile_route.dart';
@@ -28,5 +29,6 @@ class AppPages {
     ...timerUtilsRoute,
     ...profileRoute,
     ...settingRoute,
+    ...githubUserRoute,
   ];
 }
