@@ -8,6 +8,12 @@ import 'package:skybase/data/sources/server/sample_feature/sample_feature_source
 
 class SampleFeatureRepositoryImpl extends BaseRepository
     implements SampleFeatureRepository {
+  /* 
+    --- INTERVIEW PREP: REPOSITORY & CACHE ---
+    1. BaseRepository: Mixin yang memberikan kemampuan caching (CacheMixin).
+    2. loadCachedList: Otomatis cek cache lokal -> jika tidak ada/expired -> fetch API.
+    3. requestParams.cachedKey: Nama key unik untuk penyimpanan cache.
+  */
   final SampleFeatureSources apiService;
 
   SampleFeatureRepositoryImpl({required this.apiService});

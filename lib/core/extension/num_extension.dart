@@ -1,6 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 extension NumExtension on num {
+  Widget get verticalSpacing => SizedBox(height: toDouble());
+  Widget get horizontalSpacing => SizedBox(width: toDouble());
+
   String currencyFormat({
     String symbol = '',
     int decimalDigit = 0,

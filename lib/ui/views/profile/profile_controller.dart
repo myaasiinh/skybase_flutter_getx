@@ -5,6 +5,12 @@ import 'package:skybase/data/repositories/auth/auth_repository.dart';
 import 'package:skybase/ui/views/profile/component/repository/profile_repository_controller.dart';
 
 class ProfileController extends BaseController<User> {
+  /* 
+    --- INTERVIEW PREP: GETX & BASE ---
+    1. BaseController<User>: Menyediakan status (loading, error, success) & dataObj.
+    2. requestParams: Berisi cancelToken & cachedKey untuk pass ke repository.
+    3. loadData: Fungsi helper base untuk memulai pemuatan data.
+  */
   final AuthRepository repository;
 
   ProfileController({required this.repository});

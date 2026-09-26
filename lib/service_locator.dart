@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -16,12 +17,19 @@ import 'config/app/app_info.dart';
 import 'core/database/storage/storage_key.dart';
 import 'core/database/storage/storage_manager.dart';
 import 'core/database/secure_storage/secure_storage_manager.dart';
+import 'core/modules/notification/notification_service.dart';
 
 /* Created by
    Varcant
    nanda.kista@gmail.com
 */
 class ServiceLocator {
+  /* 
+    --- INTERVIEW PREP: DEPENDENCY INJECTION ---
+    1. Get.put: Mendaftarkan class secara instan (Singleton).
+    2. Get.lazyPut: Mendaftarkan class hanya saat pertama kali dipanggil (Hemat RAM).
+    3. Get.find(): Cara memanggil class yang sudah didaftarkan di mana saja.
+  */
   static Future<void> init() async {
     /// Hide debugPrint on Release
     if (kReleaseMode) debugPrint = (String? message, {int? wrapWidth}) {};
@@ -34,6 +42,15 @@ class ServiceLocator {
 
     await AppInfo.init();
 
+    /// Firebase
+    try {
+      if (!kIsWeb) {
+        await Firebase.initializeApp();
+      }
+    } catch (e) {
+      debugPrint('Firebase initialization failed: $e');
+    }
+
     /// Configs
     await _initStorage();
     Get.put(const FlutterSecureStorage());
@@ -45,6 +62,9 @@ class ServiceLocator {
     Get.lazyPut(() => ThemeManager());
     Get.lazyPut(() => LocaleManager());
     Get.put(AuthManager());
+
+    /// Services
+    await Get.putAsync(() => NotificationService().init());
   }
 
   static Future<void> _initStorage() async {

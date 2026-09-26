@@ -10,6 +10,12 @@ import 'package:skybase/ui/views/sample_feature/list/sample_feature_list_route.d
 import 'package:skybase/ui/views/utils/component/timer/timer_utils_route.dart';
 
 class AppPages {
+  /* 
+    --- INTERVIEW PREP: ROUTING & BINDING ---
+    1. AppPages: Daftar semua rute yang tersedia di aplikasi.
+    2. ...route: Variabel array yang berisi GetPage (didalamnya ada Binding).
+    3. Binding: Bertanggung jawab menginisialisasi Repository & Controller saat rute dibuka.
+  */
   static const initial = SplashView.route;
 
   static final routes = [

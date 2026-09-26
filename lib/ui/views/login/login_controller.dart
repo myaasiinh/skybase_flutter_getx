@@ -9,6 +9,12 @@ import 'package:skybase/data/repositories/auth/auth_repository.dart';
 import 'package:skybase/ui/views/main_navigation/main_nav_view.dart';
 
 class LoginController extends GetxController {
+  /* 
+    --- INTERVIEW PREP: HELPERS ---
+    1. LoadingDialog: Memanggil overlay loading (show/dismiss).
+    2. DialogHelper.failed: Shortcut untuk dialog error standar.
+    3. formKey.saveAndValidate(): Extension dari FormStateExtension.
+  */
   final AuthRepository repository;
   CancelToken cancelToken = CancelToken();
 

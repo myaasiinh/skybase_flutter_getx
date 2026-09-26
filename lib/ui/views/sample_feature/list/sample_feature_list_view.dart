@@ -14,6 +14,13 @@ import 'package:skybase/ui/widgets/sky_image.dart';
 class SampleFeatureListView extends GetView<SampleFeatureListController> {
   static const String route = '/user-list';
 
+  /* 
+    --- INTERVIEW PREP: UI & EXTENSIONS ---
+    1. context.typography: Mengambil font style dari AppTypography extension.
+    2. 12.verticalSpacing: Shortcut SizedBox dari NumExtension.
+    3. SkyAppBar: Custom widget untuk standardisasi header app.
+  */
+
   const SampleFeatureListView({super.key});
 
   @override
